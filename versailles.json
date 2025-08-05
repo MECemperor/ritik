@@ -1,0 +1,22 @@
+{
+  "name": "ashter-designs-spa",
+  "version": "1.0.0",
+  "description": "Single Page Application for AshterDesigns",
+  "build": {
+    "command": "npm run build",
+    "output": "out",
+    "environment": {
+      "NODE_ENV": "production"
+    }
+  },
+  "deploy": {
+    "static": true,
+    "spa": true,
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+} 

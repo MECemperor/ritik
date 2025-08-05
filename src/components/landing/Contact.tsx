@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Loader2, CheckCircle, AlertTriangle } from 'lucide-react';
-import { sendContactEmail } from '@/app/actions';
+import { sendContactEmailClient } from '@/app/actions-client';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const formSchema = z.object({
@@ -39,7 +39,7 @@ const Contact = () => {
     setLoading(true);
     setError(null);
     
-    const result = await sendContactEmail(values);
+    const result = await sendContactEmailClient(values);
 
     if (result.success) {
       setSubmitted(true);

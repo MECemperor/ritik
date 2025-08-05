@@ -8,13 +8,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { handleGetDesignInspiration } from '@/app/actions';
-import type { DesignInspirationOutput } from '@/ai/flows/design-inspiration';
+import { getDesignInspirationClient } from '@/app/actions-client';
 import { Loader2 } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const AIAssistant = () => {
-  const [result, setResult] = useState<DesignInspirationOutput | null>(null);
+  const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [roomType, setRoomType] = useState('');
@@ -31,7 +30,7 @@ const AIAssistant = () => {
     setResult(null);
 
     try {
-      const res = await handleGetDesignInspiration({ roomType, designPreferences });
+      const res = getDesignInspirationClient(roomType, designPreferences);
       if (res && res.recommendations) {
         setResult(res);
       } else {
